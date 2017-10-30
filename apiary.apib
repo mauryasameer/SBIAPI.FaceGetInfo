@@ -1,0 +1,93 @@
+FORMAT: 1A
+HOST: http://apiplatformcloudse-gseapicsbuleprinta-bkm6zgks.srv.ravcloud.com:8001/FaceRecogInfo
+
+# FACE - GET INFO
+These APIs uses the facial image of an individual for alternate authentication in banking applications.
+
+
+## GET FACE DETAILS - Single Record [/{TEAM_ID}/{ACCOUNT_NO}]
+This API takes Team ID and AADHAAR no. as inputs and will check if any facial image 
+is stored in the database. If any record exists in database then it will respond with 
+the link of the image. If no record exists then it generates appropriate error. 
+
++ Parameters
+    + TEAM_ID (required, number, `1000`)
+    + ACCOUNT_NO (required, number, `1234567`)
+
+### Get Face Details - Single Record [GET]
+
++ Request (application/json)
+    + Headers
+
+            api-key: ''
+            
++ Response 200 (application/json)
+
+        "items": [
+                {
+                    "team_id": 1000,
+                    "account_no": 1234567,
+                    "name": "test_name",
+                    "mime_type": "image/jpeg",
+                    "encoding": null,
+                    "img_size": null,
+                    "i_date": null,
+                    "aadhaar_no": 123456789012,
+                    "links": [
+                        {
+                            "href": "record link"
+                        }
+                    ]
+                }
+            ],...
+        
+## GET FACE IMAGE [/{TEAM_ID}/{ACCOUNT_NO}/FACE_IMAGE]
+This API takes Team ID, Account no. and the  name 'FACE_IMAGE' as inputs and will check if any facial image 
+is stored in database for the given account number. If any record exists in database then it will send 
+the image. If no record exists then it generates appropriate error.
+
++ Parameters
+    + TEAM_ID (required, number, `1000`)
+    + ACCOUNT_NO (required, number, `1234567`)
+
+
+### Get Face Image [GET]
++ Request (application/json)
+    + Headers
+
+            api-key: ''
+
++ Response 200 (application/json)
+
+
+
+## GET FACE DETAILS - All Records [/{TEAM_ID}]
+This API takes Team ID as input and will return all the face records registered by
+the particular team. If no record exists then it generates appropriate error.
+
++ Parameters
+    + TEAM_ID (required, number, `1000`)
+
+### Get Face Details - All Records [GET]
++ Request (application/json)
+    + Headers
+
+            api-key: ''
+
++ Response 200 (application/json)
+
+        {
+            "team_id": 1234,
+            "account_no": 1234567,
+            "name": "test_name",
+            "mime_type": "image/jpeg",
+            "encoding": null,
+            "img_size": null,
+            "i_date": null,
+            "aadhaar_no": 123456789012,
+            "links": [
+                {
+                    "href": "record link"
+                }
+            ]
+        },..
